@@ -7,6 +7,7 @@ function AppProvider(props){
         cart : [],
         products: []
     })
+    
     return(
         <AppContext.Provider value={[state,setState]}>
             {props.children}

@@ -19,8 +19,10 @@ const AddItem = ({item}) => {
     let tempCart = [...state.cart];
     let index = tempCart.findIndex((cartItem) => cartItem.id === item.id)
     if(index > -1){
+      console.log(index)
         tempCart[index].quantity = item.quantity
     }
+    tempCart =  tempCart.filter( ele => ele.quantity > 0)
     setState({...state, cart: tempCart})
   }
 
@@ -33,6 +35,8 @@ const AddItem = ({item}) => {
     }
     setState({...state, cart: tempCart})
   }
+
+  console.log(item, state);
 
   return (
     <>

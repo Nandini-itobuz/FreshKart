@@ -5,6 +5,7 @@ import Popular from './Popular'
 import axios from "axios";
 import AppContext from '../services/AppContext';
 
+
 const Home = () => {
 
     const [state, setState] = useContext(AppContext)
@@ -17,16 +18,16 @@ const Home = () => {
             for(let product of products){
                 product.quantity = 0
             }
-
+            console.log('prdo', products)
             catagorizeProduct(products);
-            setState(...state, products);
+            setState({...state, products});
         })
-
     };
 
     const catagorizeProduct = (products) => {
         let tempFruits = []
         let tempVegetables = []
+        console.log(products)
         for (let product of products) {
             if (product.type === 'fruits' && product.popular === 1) {
                 tempFruits.push(product);
@@ -41,7 +42,7 @@ const Home = () => {
 
     useEffect(() => {
         if (state.products.length === 0) { fetchProducts(); }
-        else { catagorizeProduct() }
+        else { catagorizeProduct(state.products) }
     }, [])
 
     return (
